@@ -7,6 +7,7 @@
         <title>Inicio de Sesion</title>
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
          <link href="bootstrap/css/estilos.css" rel="stylesheet">
+         <script src="bootstrap/js/control.js"></script>
     </head>
     <body>
         <!-- Formulario de inicio de sesion-->

@@ -1,5 +1,13 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+HttpSession sesion = request.getSession(false);
+String usu = (String) sesion.getAttribute("usuario");
+if(usu.equals("")){
+    response.sendRedirect("index.jsp");
+}
+
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -19,7 +27,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Control de gastos</a>
+            <a class="navbar-brand" href="#"><% out.println(usu); %></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">

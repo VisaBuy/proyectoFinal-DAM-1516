@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class IniciarSesion extends HttpServlet {
 
@@ -28,8 +29,12 @@ public class IniciarSesion extends HttpServlet {
         String usuario  = request.getParameter("user");
         String contrasena  = request.getParameter("pass");
         ConsultasUsuarios us = new ConsultasUsuarios();
+        
         if(us.autenticacion(usuario,contrasena))  {
-            response.sendRedirect("registroUsuario.jsp");
+            // Creo el objeto para la session
+            HttpSession osesion = request.getSession(true);
+            osesion.setAttribute("usuario",usuario);
+            response.sendRedirect("gastos.jsp");
         }else{
             response.sendRedirect("index.jsp");
         }  
