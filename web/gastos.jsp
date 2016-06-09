@@ -1,3 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="java.sql.SQLException"%>
+<%@page import="java.sql.ResultSet"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
@@ -8,6 +11,7 @@ if(usu.equals("")){
 }
 
 %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -18,57 +22,54 @@ if(usu.equals("")){
         <title>Gastos</title>
     </head>
     <body>
-          <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-            <a class="navbar-brand" href="#"><% out.println(usu); %></a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Help</a></li>
-          </ul>
-          <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search...">
-          </form>
-            
-           
-        </div>
-      </div>
-          
-    </nav>
+        <jsp:useBean id="os" class="controlador.ConsultarGastos"/>
+        <div>
+            <h1><% out.println(usu); %></h1>
         
-        
+        <form action="registro" method="POST" class="form-inline">
+            <!-- nombre-->
+            <div class="form-group">
+                <label class="control-label col-xs-3">Nombre:</label>
+                <div class="col-xs-5">
+                    <input type="text"  name="nombre"class="form-control" placeholder="Nombre">
+                </div>
+            </div>
+            <!--Fin nombre-->
+            <!--Apellido-->
+            <div class="form-group">
+                <label class="control-label col-xs-3">Apellido:</label>
+                <div class="col-xs-5">
+                    <input type="text" name="apellido" class="form-control" placeholder="Apellido">
+                </div>
+            </div>
+        </div>
         
              <!--Tabla  de gastos-->
             <div class="table-responsive">
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>#</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                  <th>Header</th>
+                  <th>Id</th>
+                  <th>Cantidad</th>
+                  <th>Tipo</th>
+                  <th>Fecha</th>
+                  <th>IdUsuario</th>
                 </tr>
               </thead>
                <tbody>
-                <tr>
-                  <td>1,001</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
-                  <td>dolor</td>
-                  <td>sit</td>
-                </tr>
-                  </tbody>
+                <tr>            
+                <!-- Recorro las lista que genera la consulta para mostrarla en filas en la web-->        
+               <c:forEach var="gast" items="${os.verTodosLosGastos()}">
+                    <tr> 
+                            <td><c:out value="${gast.idgasto}"></c:out></td>
+                          <td><c:out value="${gast.cantidad}€"></c:out></td>
+                          <td><c:out value="${gast.tipo}"></c:out></td>
+                          <td><c:out value="${gast.fecha}"></c:out></td>
+                          <td><c:out value="${gast.idusuario}"></c:out></td>
+                     </tr>      
+                   
+               </c:forEach>
+               </tbody>
             </table>
           </div>
         <!--Scripts -->
