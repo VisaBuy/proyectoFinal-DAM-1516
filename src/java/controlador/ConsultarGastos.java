@@ -86,7 +86,7 @@ public class ConsultarGastos extends Conexion{
       return false;
     }
     
-  
+  //Metodo para eliminar gastos.
      public boolean eliminarGasto(int id){
         PreparedStatement pst=null;
         ResultSet rs =null;
@@ -106,10 +106,46 @@ public class ConsultarGastos extends Conexion{
         
     }   
       
+  // metodo para modificar los gastos.
+     
+     //UPDATE gasto SET tipo="casa" WHERE idgasto=4;
+     public boolean modificarGasto(int idg, float cantidad, String tipo,  int idusuario){
+            PreparedStatement pst=null;
+            ResultSet rs=null;
+        try {
+            String consulta = "UPDATE gasto SET cantidad=?,tipo=?, fecha=now(), idusuariogasto=? WHERE idgasto=?";
+            pst =getConexion().prepareStatement(consulta);
+            //Asigno los parámetros a la consulta para ingresar los datos.
+            pst.setFloat(1,cantidad );
+            pst.setString(2, tipo);
+            pst.setInt(3, idusuario); 
+            pst.setInt(4, idg);
+            int r= pst.executeUpdate();
+            // Ejecuto la consulta, en caso de que se ejecute correctamente retornará TRUE.
+            if(r == 1){
+                return true;
+            }
+            
+            
+        } catch (SQLException ex) {
+            System.err.println("No se pudo actualizar el gasto.");
+        }finally{
+            //Cierro las conexiones.
+            try {
+                if(getConexion() !=null) {getConexion().close();}
+                if(pst !=null) pst.close();
+            } catch (Exception e) {
+                System.err.println("No se pudo cerrar la conexiones error: "+ e.toString());
+            }
+        }
         
+      return false;
+    } 
+     
+     
     public static void main(String[] args) {
         ConsultarGastos j = new ConsultarGastos();
-        System.out.println(j.eliminarGasto(1)); 
+        System.out.println(j.modificarGasto(8,(float)115.02,"Casalll", 2)); 
 }
     
 }

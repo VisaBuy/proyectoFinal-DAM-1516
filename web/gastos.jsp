@@ -54,8 +54,10 @@ if(usu.equals("")){
         <div class="col-xs-offset-3 col-xs-9">
             <input type="submit" class="btn btn-primary" value="Ingresar">
             <input type="reset" class="btn btn-default" value="Borrar">
+            
         </div>
         </div>
+              <font color="green"><c:out value="Gasto insertado correctamente"/></font>
         </form>
         
              <!--Tabla  de gastos-->
@@ -63,7 +65,7 @@ if(usu.equals("")){
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>Id</th>
+            <!--      <th>Id</th>-->
                   <th>Cantidad</th>
                   <th>Tipo</th>
                   <th>Fecha</th>
@@ -76,7 +78,6 @@ if(usu.equals("")){
                 <!-- Recorro las lista que genera la consulta para mostrarla en filas en la web-->        
                <c:forEach var="gast" items="${os.verTodosLosGastos()}">
                     <tr> 
-                          <td><c:out value="${gast.idgasto}"></c:out></td>
                           <td><c:out value="${gast.cantidad}€"></c:out></td>
                           <td><c:out value="${gast.tipo}"></c:out></td>
                           <td><c:out value="${gast.fecha}"></c:out></td>
