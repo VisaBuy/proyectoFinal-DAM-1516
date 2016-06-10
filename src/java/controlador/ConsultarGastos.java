@@ -58,7 +58,7 @@ public class ConsultarGastos extends Conexion{
             ResultSet rs=null;
         try {
             
-            String consulta = "INSERT INTO gasto(cantida, tipo, fecha, idusuariogasto, ) VALUES(?,?,now(),?)";
+            String consulta = "INSERT INTO gasto(cantidad, tipo, fecha, idusuariogasto ) VALUES(?,?,now(),?)";
             pst =getConexion().prepareStatement(consulta);
             //Asigno los parámetros a la consulta para ingresar los datos.
             pst.setFloat(1,cantidad );
@@ -86,9 +86,30 @@ public class ConsultarGastos extends Conexion{
       return false;
     }
     
+  
+     public boolean eliminarGasto(int id){
+        PreparedStatement pst=null;
+        ResultSet rs =null;
+        String consulta ="DELETE FROM gasto WHERE idgasto= ?;";
+       
+        try {
+           pst = getConexion().prepareStatement(consulta);
+           pst.setInt(1, id);
+           
+           
+           if (pst.executeUpdate()>=1){ return true;}
+           }catch (SQLException ex) {
+            System.out.println("No se pudo ver los gastos ");
+           }
+        
+      return false;
+        
+    }   
+      
+        
     public static void main(String[] args) {
         ConsultarGastos j = new ConsultarGastos();
-        System.out.println(j.InsertarGasto((float) 122.5,"Comida", 1));
+        System.out.println(j.eliminarGasto(1)); 
 }
     
 }
