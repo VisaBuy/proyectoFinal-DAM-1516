@@ -10,27 +10,32 @@
         response.sendRedirect("index.jsp");
     }
 %>
-
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="bootstrap/js/jquery-2.2.4.min.js"></script>
-        <script src="bootstrap/js/bootstrap.js"></script>
+         <!--CSS-->
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+         <!--JS-->
+       <script src="bootstrap/js/jquery-2.2.4.min.js"></script>
         <script src="bootstrap/js/control.js"></script>
-
+        <script src="bootstrap/js/bootstrap.min.js"></script>
         <meta name="viewport" content="width=device-width; initial-scale=1.0"> 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
         <title>Gastos</title>
     </head>
     <body>
         <jsp:useBean id="os" class="controlador.ConsultarGastos"/>
-        <div>
-            <h1><% out.println(usu); %></h1><br>
-            <a href="index.jsp"> ${session.invalidate()} cerrar</a> 
-
-        </div>
+        <!--Desplegable de usuario con la opción de 'Cerrar sesión'-->
+        <div class="center-block">                                        
+          <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><% out.println(usu);%>
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <li><a href="cerrar">Cerrar sesión</a></li>
+             </ul>
+          </div>
+         <!--Fin desplegable-->
         <form action="inserta" method="POST" class="form-horizontal">
             <!-- nombre-->
             <div class="form-group">
@@ -117,7 +122,6 @@
                 </tbody>
             </table>
         </div>
-        <!--Script's -->
-
-    </body>
+        </div> 
+   </body>
 </html>
