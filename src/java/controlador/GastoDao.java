@@ -6,6 +6,7 @@ public class GastoDao {
     private String tipo, fecha, idusuario;
     private float  cantidad;
     private int idgasto;
+    private String nombre;
 
     public GastoDao( int idgasto,String tipo, float cantidad, String fecha, String idusuario) {
         this.tipo = tipo;
@@ -13,6 +14,15 @@ public class GastoDao {
         this.idusuario = idusuario;
         this.cantidad = cantidad;
         this.idgasto = idgasto;
+        
+    }
+
+    public GastoDao(String tipo, String fecha, float cantidad, int idgasto, String nombre) {
+        this.tipo = tipo;
+        this.fecha = fecha;
+        this.cantidad = cantidad;
+        this.idgasto = idgasto;
+        this.nombre = nombre;
     }
 
     

@@ -78,7 +78,7 @@
                         <th>Cantidad</th>
                         <th>Tipo</th>
                         <th>Fecha</th>
-                        <th>IdUsuario</th>
+                        <th>Usuario</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>

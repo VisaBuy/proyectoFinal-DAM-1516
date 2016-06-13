@@ -11,11 +11,13 @@ public class ConsultarGastos extends Conexion{
 
     public ConsultarGastos() {
     }
-    
+
     public List<GastoDao>  verTodosLosGastos(){
         PreparedStatement pst=null;
         ResultSet rs =null;
-        String consulta ="SELECT * FROM gasto;";
+       
+        String consulta ="SELECT g.idgasto, g.cantidad , g.tipo, g.fecha, g.idusuariogasto,"
+                + " u.usuario  FROM gasto g, usuarios u where g.idusuariogasto=u.idusuario;";
         // Declaro la lista donde guardare en forma de objetos todos los registros generados por la consulta
         List<GastoDao> gastoslist = new ArrayList();
         
@@ -24,13 +26,14 @@ public class ConsultarGastos extends Conexion{
                 pst = getConexion().prepareStatement(consulta);
                 rs =    pst.executeQuery();
                 while(rs.next()){
-                      int idgasto = Integer.valueOf(rs.getString("idgasto"));
-                      String tipo= rs.getString("tipo");
-                      float cantidad = Float.valueOf(rs.getString("cantidad")) ;
-                      String fecha = rs.getString("fecha");
-                      String idUsuario = rs.getString("idusuariogasto");
+                      int idgasto = Integer.valueOf(rs.getString("g.idgasto"));
+                      String tipo= rs.getString("g.tipo");
+                      float cantidad = Float.valueOf(rs.getString("g.cantidad")) ;
+                      String fecha = rs.getString("g.fecha");
+                      String usuario = rs.getString("u.usuario");
                       //Añado cada fila en forma de objeto GastoDao
-                      gastoslist.add(new GastoDao(idgasto,tipo,cantidad , fecha, idUsuario));
+                      gastoslist.add(new GastoDao(idgasto,tipo,cantidad , fecha, usuario));
+                      //gastoslist.add(new GastoDao(idgasto,tipo,cantidad , fecha, idUsuario));
                  }
             
              }
@@ -42,7 +45,13 @@ public class ConsultarGastos extends Conexion{
       return gastoslist;
         
     }  
-    
+ /***
+  Recibe tres parametros para ingresar los gastos,.
+     * @param cantidad
+     * @param tipo
+     * @param idusuario
+     * @return 
+  **/
       public boolean  InsertarGasto(float cantidad, String tipo,  int idusuario){
             PreparedStatement pst=null;
             ResultSet rs=null;

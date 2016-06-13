@@ -1,9 +1,3 @@
-<%-- 
-    Document   : prueba
-    Created on : 13-jun-2016, 18:53:56
-    Author     : jhon
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -22,16 +16,15 @@
     </head>
     <body>
 
-        <div class="container">
-                                                  
-          <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-            <span class="caret"></span></button>
-            <ul class="dropdown-menu">
-              <li><a href="#">Cerrar sesión</a></li>
-             </ul>
-          </div>
-        </div>
+            <div class="form-group">
+                <label for="sel1">Select list:</label>
+                <select class="form-control" id="sel1">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                </select>
+             </div>
         <!--Scripts -->
          <script src="bootstrap/js/jquery-2.2.4.min.js"></script>
         <script src="bootstrap/js/bootstrap.js"></script>
