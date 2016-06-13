@@ -35,14 +35,14 @@ public class InsertarGasto extends HttpServlet {
        // Declaro la variable donde guardare los compos recibidos del formulario.
         String tipo;
         float cantidad;
-        int idUsuario;
-        
+        String usuario;
+        //Valor de usuario oculto.
         tipo = request.getParameter("tipo");
         cantidad = Float.parseFloat(request.getParameter("cantidad"));
-        idUsuario = Integer.parseInt(request.getParameter("idusuario"));
+        usuario= request.getParameter("gUsuario");
         // Declaro el nuevo objeto de tipo gasto.
         ConsultarGastos con = new ConsultarGastos();
-        boolean confir = con.InsertarGasto(cantidad, tipo, idUsuario);
+        boolean confir = con.InsertarGasto(cantidad, tipo, usuario);
        
         if(confir==true){
             response.sendRedirect("gastos.jsp");

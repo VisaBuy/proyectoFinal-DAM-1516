@@ -53,9 +53,9 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-xs-3">Idusuario:</label>
+                <label class="control-label col-xs-3"><!--Idusuario:--></label>
                 <div class="col-xs-5">
-                    <input type="number" name="idusuario" class="form-control" placeholder="Ejem: 1" required >
+                    <input type="text" name="gUsuario" style="display:none" class="form-control" value="<% out.println(usu);%>"  >
                 </div>
             </div>
 

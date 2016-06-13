@@ -52,17 +52,17 @@ public class ConsultarGastos extends Conexion{
      * @param idusuario
      * @return 
   **/
-      public boolean  InsertarGasto(float cantidad, String tipo,  int idusuario){
+      public boolean  InsertarGasto(float cantidad, String tipo,  String idusuario){
             PreparedStatement pst=null;
             ResultSet rs=null;
         try {
             
-            String consulta = "INSERT INTO gasto(cantidad, tipo, fecha, idusuariogasto ) VALUES(?,?,now(),?)";
+            String consulta = "INSERT INTO gasto(cantidad, tipo, fecha, idusuariogasto ) VALUES(?,?,now(),(select idusuario from usuarios where usuario=?))";
             pst =getConexion().prepareStatement(consulta);
             //Asigno los parámetros a la consulta para ingresar los datos.
             pst.setFloat(1,cantidad );
             pst.setString(2, tipo);
-            pst.setInt(3, idusuario);            
+            pst.setString(3, idusuario);            
             int r= pst.executeUpdate();
             // Ejecuto la consulta, en caso de que se ejecute correctamente retornará TRUE.
             if(r == 1){return true; }
@@ -148,4 +148,9 @@ public class ConsultarGastos extends Conexion{
       return false;
     } 
 
+     public static void main(String[] args) {
+        ConsultarGastos j = new ConsultarGastos();
+         System.out.println(j.InsertarGasto((float)12.6, "Comidad", "pepe")); 
+    }
+     
 }
