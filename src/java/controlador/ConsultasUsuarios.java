@@ -79,10 +79,4 @@ public class ConsultasUsuarios extends Conexion{
       return false;
     }
     
-    
-    public static void main(String[] args) {
-        ConsultasUsuarios j = new ConsultasUsuarios();
-        System.out.println(j.registroUsuario("Maria", "Lopez",(float)12.5,"marial" ,"1234")); 
-    }
-    
 }

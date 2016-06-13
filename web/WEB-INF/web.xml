@@ -16,6 +16,14 @@
         <servlet-name>EliminarGasto</servlet-name>
         <servlet-class>servlet.EliminarGasto</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ModificarGasto</servlet-name>
+        <servlet-class>servlet.ModificarGasto</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CerrarSesion</servlet-name>
+        <servlet-class>servlet.CerrarSesion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>IniciarSesion</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -31,6 +39,14 @@
     <servlet-mapping>
         <servlet-name>EliminarGasto</servlet-name>
         <url-pattern>/eliminar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModificarGasto</servlet-name>
+        <url-pattern>/modificar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CerrarSesion</servlet-name>
+        <url-pattern>/cerrar</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

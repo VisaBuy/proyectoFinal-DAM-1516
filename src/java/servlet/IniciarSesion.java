@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.jsp.PageContext;
 
 public class IniciarSesion extends HttpServlet {
 
@@ -36,6 +37,7 @@ public class IniciarSesion extends HttpServlet {
             osesion.setAttribute("usuario",usuario);
             response.sendRedirect("gastos.jsp");
         }else{
+          
             response.sendRedirect("index.jsp");
         }  
         

@@ -5,7 +5,6 @@
  */
 package servlet;
 
-import controlador.ConsultarGastos;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -17,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author jhon
  */
-public class EliminarGasto extends HttpServlet {
+public class CerrarSesion extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,21 +31,8 @@ public class EliminarGasto extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        
-        int identificador = Integer.parseInt(request.getParameter("identificadorDeGasto"));
-            
-        
-        ConsultarGastos eli = new ConsultarGastos();
-        boolean res =eli.eliminarGasto(identificador);
-        
-        if(res ==true){
-            response.sendRedirect("gastos.jsp");
-        }else{
-            out.println("<p> No se pudo eliminar el gasto</p>");
-        }
-       
-        }
-    
+      
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

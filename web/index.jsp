@@ -16,10 +16,13 @@
                 <input type="text" name="user"required class="form-control" ><br> 
                 <label>Contraseña:</label><br> 
                 <input type="password" name="pass"required  class="form-control"><br>
+                 
                 <input class="btn btn-lg btn-primary btn-block" type="submit" value="Entrar">
+                <a href="registroUsuario.jsp">Registrarme</a>
             </form>
-          </fieldset>
-        <!-- Fin del formulario-->
+         
+        </fieldset>
+        <!-- /Fin del formulario-->
         <script src="bootstrap/js/jquery-2.2.4.min.js"></script>
         <script src="bootstrap/js/bootstrap.js"></script>
     </body>

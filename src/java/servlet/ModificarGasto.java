@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author jhon
  */
-public class EliminarGasto extends HttpServlet {
+public class ModificarGasto extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,21 +32,23 @@ public class EliminarGasto extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        String tipo;
+        float cantidad;
+        int idUsuario,idGasto;
         
-        int identificador = Integer.parseInt(request.getParameter("identificadorDeGasto"));
-            
-        
-        ConsultarGastos eli = new ConsultarGastos();
-        boolean res =eli.eliminarGasto(identificador);
-        
-        if(res ==true){
-            response.sendRedirect("gastos.jsp");
-        }else{
-            out.println("<p> No se pudo eliminar el gasto</p>");
-        }
+        idGasto =Integer.parseInt(request.getParameter("idgasto"));
+        tipo = request.getParameter("tipo");
+        cantidad = Float.parseFloat(request.getParameter("cantidad"));
+        idUsuario = Integer.parseInt(request.getParameter("idusuario"));
+        // Declaro el nuevo objeto de tipo gasto.
+        ConsultarGastos con = new ConsultarGastos();
+        //añado una variable buleana para guardar el resultado del metodo.
+        boolean confir = con.modificarGasto(idGasto,cantidad, tipo, idUsuario);
        
+        if(confir==true){
+            response.sendRedirect("gastos.jsp");
         }
-    
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
