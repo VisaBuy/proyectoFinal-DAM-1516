@@ -9,19 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.jsp.PageContext;
-
+/**Esta clase crea un objeto de tipo ConsultarGastos y luego llama a la método autenticar pasandole el usuario y contraseña recibidos 
+ del atributos del objeto request optenido del formulario web*/
 public class IniciarSesion extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -31,6 +23,8 @@ public class IniciarSesion extends HttpServlet {
         String contrasena  = request.getParameter("pass");
         ConsultasUsuarios us = new ConsultasUsuarios();
         
+        /**En caso de que la función devuelva TRUE se creara una sesión, y se redigira al usuario a la pagina de gastos.
+         En caso contrario se redirigira a la pagina de inicio de sesión.*/
         if(us.autenticacion(usuario,contrasena))  {
             // Creo el objeto para la session
             HttpSession osesion = request.getSession(true);

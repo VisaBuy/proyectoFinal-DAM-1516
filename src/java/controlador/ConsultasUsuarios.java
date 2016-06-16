@@ -5,8 +5,16 @@ import java.sql.PreparedStatement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/** 
+ * Esta clase hereda de Conexion.
+ */
 public class ConsultasUsuarios extends Conexion{
     
+    /**
+     * @param nombre Contiene el nombre del usuario.
+     * @param pass Contiene la contraseña del usuario.
+     * @return  Retornará TRUE si el usuario y contreseña sean verdadres de lo contrario devolvera FALSE.
+     */
     public boolean autenticacion(String nombre, String pass){
         PreparedStatement pst=null;
         ResultSet rs=null;
@@ -40,8 +48,16 @@ public class ConsultasUsuarios extends Conexion{
         
         return false;
     }
-    
-    
+   
+    /**
+     * 
+     * @param nom  Contiene el nombre de usuario.
+//   * @param ape  Contiene el apellido del usuario
+     * @param suel  Contiene el con tiene el sueldo del usuario y es de tipo float
+     * @param usu   Con nombre de usuario con el que iniciará sesión.
+     * @param contra Contiene la contraseña del usuario.
+     * @return  Retornará TRUE si la consulta se ejecuta correctamente, en caso contraserio devolvera FALSE.
+     */
     public boolean  registroUsuario(String nom, String ape, float suel, String usu, String contra){
             PreparedStatement pst=null;
             ResultSet rs=null;
@@ -52,7 +68,6 @@ public class ConsultasUsuarios extends Conexion{
             //Asigno los parámetros a la consulta para ingresar los datos.
             pst.setString(1,nom );
             pst.setString(2, ape);
-         //   double sue = Double.parseDouble(suel);
             pst.setFloat(3, suel);
             pst.setString(4,usu );
             pst.setString(5,contra);

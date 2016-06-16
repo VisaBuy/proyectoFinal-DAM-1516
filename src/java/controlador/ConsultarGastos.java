@@ -1,17 +1,28 @@
-
 package controlador;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ Esta clase hereda de conexión.
+ */
 
 public class ConsultarGastos extends Conexion{
-
+    
+    /***
+     Este constructor permite crear un objeto de tipo ConsultarGastos.
+     **/
     public ConsultarGastos() {
     }
-
+    
+    /**
+     * @return retorna una lista de objeto de tipo GastoDao. 
+     * Cada atributo de un objeto representa unos atributos en la tabla dentro de la base de datos.
+     *
+     **/
     public List<GastoDao>  verTodosLosGastos(){
         PreparedStatement pst=null;
         ResultSet rs =null;
@@ -33,7 +44,6 @@ public class ConsultarGastos extends Conexion{
                       String usuario = rs.getString("u.usuario");
                       //Añado cada fila en forma de objeto GastoDao
                       gastoslist.add(new GastoDao(idgasto,tipo,cantidad , fecha, usuario));
-                      //gastoslist.add(new GastoDao(idgasto,tipo,cantidad , fecha, idUsuario));
                  }
             
              }
@@ -46,11 +56,13 @@ public class ConsultarGastos extends Conexion{
         
     }  
  /***
-  Recibe tres parametros para ingresar los gastos,.
-     * @param cantidad
-     * @param tipo
-     * @param idusuario
-     * @return 
+  Recibe tres parametros para ingresar los gastos:
+     * @param cantidad representa importe del gasto es de tipo float
+     * @param tipo  representa uno d elos tipos de gastos Deporte, Ocio...etc.
+     * @param idusuario Este es un atributo de tipo String que contiene el nombre del usuario para luego utilizarlo en la consulta 
+     * y el identificador para ser utilizado en la consulta.
+     * @return  Si se ha realizado correctamente la consulta devuelve TRUE de lo contrario 
+     * devolvera FALSE
   **/
       public boolean  InsertarGasto(float cantidad, String tipo,  String idusuario){
             PreparedStatement pst=null;
@@ -82,8 +94,13 @@ public class ConsultarGastos extends Conexion{
       return false;
     }
     
-  //Metodo para eliminar gastos.
-     public boolean eliminarGasto(int id){
+ 
+    /**
+     *
+     * @param id este parámetro contiene el identificador del gasto que sera eliminado.
+     * @return  si el gasto se ha eliminado correctamente devolverá TRUE en caso contrario FALSE.
+     */
+    public boolean eliminarGasto(int id){
         PreparedStatement pst=null;
         ResultSet rs =null;
         String consulta ="DELETE FROM gasto WHERE idgasto= ?;";
@@ -110,22 +127,28 @@ public class ConsultarGastos extends Conexion{
       return false;
         
     }   
-      
- 
-// METODO PARA MODIFICAR LOS GASTOS:
-//Este función recibe los metodos del servlet para luego ser insertado como parametros dentro de la consulta.
-//Si la consulta se realiza correctamente esta función devolverá TRUE en el caso contrario delvolverá FALSE.
-     public boolean modificarGasto(int idg, float cantidad, String tipo,  int idusuario){
+     
+    /**
+     * @param idg Contiene el identificador del gasto que sera modificado.
+     * @param cantidad Con tiene la contidad del gasto.
+     * @param tipo contiene el tipo de gasto.
+     * @param gUsuario contiene el nombre del usuario.
+     * @return  Este función recibe los metodos del servlet para luego ser insertado como parametros dentro de la consulta.
+     * Si la consulta se realiza correctamente esta función devolverá TRUE en el caso contrario delvolverá FALSE.
+ */
+     public boolean modificarGasto(int idg, float cantidad, String tipo,  String gUsuario){
             PreparedStatement pst=null;
             ResultSet rs=null;
         try {
-            String consulta = "UPDATE gasto SET cantidad=?,tipo=?, fecha=now(), idusuariogasto=? WHERE idgasto=?";
+            String consulta = "UPDATE gasto SET cantidad=?,tipo=?, fecha=now() "
+                    + " WHERE idgasto=? and idusuariogasto= (select idusuario from usuarios where usuario=?)";
             pst =getConexion().prepareStatement(consulta);
             //Asigno los parámetros a la consulta para ingresar los datos.
             pst.setFloat(1,cantidad );
             pst.setString(2, tipo);
-            pst.setInt(3, idusuario); 
-            pst.setInt(4, idg);
+            pst.setInt(3, idg);
+            pst.setString(4, gUsuario); 
+            
             int r= pst.executeUpdate();
             // Ejecuto la consulta, en caso de que se ejecute correctamente retornará TRUE.
             if(r == 1){
@@ -147,10 +170,5 @@ public class ConsultarGastos extends Conexion{
         
       return false;
     } 
-
-     public static void main(String[] args) {
-        ConsultarGastos j = new ConsultarGastos();
-         System.out.println(j.InsertarGasto((float)12.6, "Comidad", "pepe")); 
-    }
      
 }

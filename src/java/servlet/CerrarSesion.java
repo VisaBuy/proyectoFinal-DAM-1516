@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author jhon
  */
+/**Cierra la sesión del usuario dentro de la aplicación.*/
 public class CerrarSesion extends HttpServlet {
 
   
@@ -19,8 +20,9 @@ public class CerrarSesion extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-      
-      //Cierro la sesión del usuario en la página.
+      /**Al realizar una llamada a este Servlet se cierra cualquier sesión que este iniciada, 
+       * redirige a la pagina index para realizar un nuevo inicio.
+       */
         HttpSession sesion=request.getSession();
         sesion.invalidate(); 
         response.sendRedirect("index.jsp");

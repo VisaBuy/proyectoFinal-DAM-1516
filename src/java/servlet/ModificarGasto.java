@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servlet;
 
 import controlador.ConsultarGastos;
@@ -17,29 +12,23 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author jhon
  */
+/**Esta clase recoge los campos del formulario y crea un objeto de tipo ConsultarGastos, luego llama al metodo insertarGasto() 
+ pasandole el idgasto, usuario, cantidad*/
 public class ModificarGasto extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        String tipo;
+        String tipo, idUsuario;
         float cantidad;
-        int idUsuario,idGasto;
+        int idGasto;
         
         idGasto =Integer.parseInt(request.getParameter("idgasto"));
         tipo = request.getParameter("tipo");
         cantidad = Float.parseFloat(request.getParameter("cantidad"));
-        idUsuario = Integer.parseInt(request.getParameter("idusuario"));
+        idUsuario = request.getParameter("idusuario");
         // Declaro el nuevo objeto de tipo gasto.
         ConsultarGastos con = new ConsultarGastos();
         //añado una variable buleana para guardar el resultado del metodo.

@@ -17,22 +17,14 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author jhon
  */
+/**Esta clase crea un objeto de tipo ConsultarGasto y luego llama a la funcion eliminarGato para eliminar los gasto*/
 public class EliminarGasto extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        
+        /**Combierto el identificador de esta variable*/
         int identificador = Integer.parseInt(request.getParameter("identificadorDeGasto"));
             
         
@@ -41,8 +33,6 @@ public class EliminarGasto extends HttpServlet {
         
         if(res ==true){
             response.sendRedirect("gastos.jsp");
-        }else{
-            out.println("<p> No se pudo eliminar el gasto</p>");
         }
        
         }

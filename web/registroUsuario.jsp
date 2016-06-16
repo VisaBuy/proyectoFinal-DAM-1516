@@ -50,7 +50,15 @@
             <div class="form-group">
                 <label class="control-label col-xs-3">Contraseña:</label>
                 <div class="col-xs-5">
-                    <input type="password" name="contrasena" class="form-control" id="inputPassword" placeholder="Contraseña">
+                    <input type="password" name="contrasena" class="form-control" id="inputPassword" placeholder="Contraseña" required>
+                </div>
+            </div>
+          <!--Fin de contraseña-->
+          <!--Contraseña-->
+            <div class="form-group">
+                <label class="control-label col-xs-3">Contraseña:</label>
+                <div class="col-xs-5">
+                    <input type="password"  class="form-control" id="inputPassword" placeholder="Contraseña" required>
                 </div>
             </div>
           <!--Fin de contraseña-->
