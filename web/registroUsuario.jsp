@@ -11,8 +11,9 @@
         <title>Registrar Usuario</title>
     </head>
     <body>
-        <h1>Formulario de registro</h1>
+        
         <form action="registro" method="POST" class="form-horizontal">
+                    <h1>Formulario de registro</h1>
             <!-- nombre-->
             <div class="form-group">
                 <label class="control-label col-xs-3">Nombre:</label>
@@ -56,7 +57,7 @@
           <!--Fin de contraseña-->
           <!--Contraseña-->
             <div class="form-group">
-                <label class="control-label col-xs-3">Contraseña:</label>
+                <label class="control-label col-xs-3">Confirmar contraseña:</label>
                 <div class="col-xs-5">
                     <input type="password"  class="form-control" id="inputPassword" placeholder="Contraseña" required>
                 </div>

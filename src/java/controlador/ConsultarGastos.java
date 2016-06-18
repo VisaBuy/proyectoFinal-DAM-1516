@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- Esta clase hereda de conexión.
+ Esta clase contiene un contructor y los métodos para operar con los gastos, también extiende de la clase conexión.
  */
 
 public class ConsultarGastos extends Conexion{
@@ -59,12 +59,12 @@ public class ConsultarGastos extends Conexion{
   Recibe tres parametros para ingresar los gastos:
      * @param cantidad representa importe del gasto es de tipo float
      * @param tipo  representa uno d elos tipos de gastos Deporte, Ocio...etc.
-     * @param idusuario Este es un atributo de tipo String que contiene el nombre del usuario para luego utilizarlo en la consulta 
+     * @param usuario Este es un atributo de tipo String que contiene el nombre del usuario para luego utilizarlo en la consulta 
      * y el identificador para ser utilizado en la consulta.
      * @return  Si se ha realizado correctamente la consulta devuelve TRUE de lo contrario 
      * devolvera FALSE
   **/
-      public boolean  InsertarGasto(float cantidad, String tipo,  String idusuario){
+      public boolean  InsertarGasto(float cantidad, String tipo,  String usuario){
             PreparedStatement pst=null;
             ResultSet rs=null;
         try {
@@ -74,7 +74,7 @@ public class ConsultarGastos extends Conexion{
             //Asigno los parámetros a la consulta para ingresar los datos.
             pst.setFloat(1,cantidad );
             pst.setString(2, tipo);
-            pst.setString(3, idusuario);            
+            pst.setString(3, usuario);            
             int r= pst.executeUpdate();
             // Ejecuto la consulta, en caso de que se ejecute correctamente retornará TRUE.
             if(r == 1){return true; }
@@ -130,7 +130,7 @@ public class ConsultarGastos extends Conexion{
      
     /**
      * @param idg Contiene el identificador del gasto que sera modificado.
-     * @param cantidad Con tiene la contidad del gasto.
+     * @param cantidad Con tiene la cantidad del gasto.
      * @param tipo contiene el tipo de gasto.
      * @param gUsuario contiene el nombre del usuario.
      * @return  Este función recibe los metodos del servlet para luego ser insertado como parametros dentro de la consulta.

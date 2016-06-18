@@ -6,9 +6,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /** 
- * Esta clase hereda de Conexion.
+ * Esta contiene un constructor y metodos para operar con la cl.
  */
 public class ConsultasUsuarios extends Conexion{
+    
+    
+    /**Contructor de usuarios*/
+    public ConsultasUsuarios() {
+    }
+    
+   
     
     /**
      * @param nombre Contiene el nombre del usuario.
@@ -52,9 +59,9 @@ public class ConsultasUsuarios extends Conexion{
     /**
      * 
      * @param nom  Contiene el nombre de usuario.
-//   * @param ape  Contiene el apellido del usuario
-     * @param suel  Contiene el con tiene el sueldo del usuario y es de tipo float
-     * @param usu   Con nombre de usuario con el que iniciará sesión.
+     * @param ape   Contiene el apellido del usuario
+     * @param suel  Contiene  el sueldo del usuario y es de tipo float
+     * @param usu   Contiene nombre de usuario con el que iniciará sesión.
      * @param contra Contiene la contraseña del usuario.
      * @return  Retornará TRUE si la consulta se ejecuta correctamente, en caso contraserio devolvera FALSE.
      */

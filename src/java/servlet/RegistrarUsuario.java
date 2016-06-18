@@ -12,7 +12,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author jhon
  */
-/**Recoge los datos del formulario, luego crea un objeto  ConsultaUsuario y le pasa como parametros todos los datos del usuario.*/
+/**Recoge los datos del formulario, luego crea un objeto  ConsultaUsuario y le pasa como parametros todos los datos del usuario. 
+ Si la consulta devuelve TRUE lo redirige a la pagina de iniciar sesion en caso contrario, se queda en la pagina de inicio.*/
 public class RegistrarUsuario extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -34,11 +35,6 @@ public class RegistrarUsuario extends HttpServlet {
         }else{
                  response.sendRedirect("registroUsuario.jsp");
             }
-        
-        
-        
-        
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
